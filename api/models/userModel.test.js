@@ -26,22 +26,4 @@ describe("auth model", () => {
       });
     });
   });
-  // });
-
-  // describe("auth model", () => {
-  //   beforeEach(async () => {
-  //     await db("users").truncate;
-  //   });
-  //   describe("add function", () => {
-  //     it("adds a user to the db", async () => {
-  //       let userNumber;
-  //       userNumber = await db("users");
-  //       expect(userNumber).toHaveLength(9);
-  //       await User.add({ username: "paul" });
-  //       await User.add({ username: "lo" });
-
-  //       userNumber = await db("users");
-  //       expect(userNumber).toHaveLength(11);
-  //     });
-  //   });
 });
