@@ -32,5 +32,5 @@ module.exports = {
   updateUser,
   deleteUser,
   findBy,
-  add,
+  //   add,
 };
