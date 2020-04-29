@@ -2,7 +2,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-//set server constant to use express
 const server = express();
 
 //use body-parser for bodies with UTF-8 encoding
