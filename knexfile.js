@@ -17,6 +17,7 @@ module.exports = {
       min: 2,
       max: 10,
     },
+
     migrations: {
       directory: "./database/migrations",
       tableName: "knex_migrations",
@@ -24,6 +25,33 @@ module.exports = {
     seeds: {
       directory: "./database/seeds",
     },
+    testing: {
+      client: "pg",
+      connection: {
+        host: "localhost",
+        user: "paulabernathy",
+        password: "thetempo1",
+        database: "workout_tracker",
+        charset: "utf8",
+        port: 5432,
+        filename: "./data/test.db3",
+      },
+      useNullAsDefault: true,
+      migrations: {
+        directory: './database/migrations"',
+      },
+      seeds: {
+        directory: "./database/seeds",
+      },
+      migrations: {
+        directory: "./database/migrations",
+        tableName: "knex_migrations",
+      },
+      seeds: {
+        directory: "./database/seeds",
+      },
+    },
+
     useNullAsDefault: true,
   },
 

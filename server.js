@@ -10,7 +10,9 @@ server.use(
     extended: true,
   })
 );
-
+server.get("/", async (req, res) => {
+  res.status(200).json({ api: "ready" });
+});
 //parse json with body-parser
 server.use(bodyParser.json());
 
