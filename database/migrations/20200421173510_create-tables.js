@@ -1,61 +1,195 @@
-
 exports.up = function(knex) {
     return(
         knex.schema
             .createTable('users', tbl => {
                 tbl.increments();
-                tbl.text('oauth_id').unique();
-                tbl.text('username').unique().notNullable();
-                tbl.text('email').unique().notNullable();
-                tbl.text('password').notNullable();
-                tbl.text('goal');
-                tbl.date('goal_startdate');
-                tbl.date('goal_enddate');
+                tbl.string('username')
+                .notNullable()
+                .unique();
+                tbl.string('email')
+                .notNullable()
+                .unique();
+                tbl.string('bio');
+                tbl.integer('zip', 5)
+                .unsigned();
+                tbl.boolean('affiliate')
+                .notNullable();
+                tbl.boolean('verified')
+                .notNullable();
+                tbl.integer('xp')
+                .defaultTo(0)
+                .unsigned()
+                .notNullable();
             })
+            .createTable('workouts', tbl =>{
+                tbl.increments();
+                tbl.string('workout_title')
+                .notNullable();
+                tbl.date('workout_date')
+                .notNullable();
+                tbl.time('workout_start_time')
+                .notNullable();
+                tbl.time('workout_end_time')
+                .notNullable();
+                tbl.string('workout_description');
+                tbl.boolean('completed')
+                .defaultTo(false)
+                .notNullable();
+            })
+            .createTable('diets', tbl =>{
+                tbl.increments();
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('users')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.text('diet_description')
+                .notNullable();
+            })
+            .createTable('total_workouts', tbl =>{
+                tbl.increments();
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('users')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('workout_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('workout')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+            })
+            .createTable('following', tbl =>{
+                tbl.increments();
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('users')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('follower_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('users')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE')
+            })
+            .createTable('achieved', tbl =>{
+                tbl.increments();
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('users')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('badge_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('badges')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.boolean('completed')
+                .notNullable()
+                .defaultTo(false);
             
-            .createTable('daily_workout_totals', tbl => {
-                tbl.increments();
-                tbl.date('workout_date');
-                tbl.time('workout_starttime');
-                tbl.time('workout_endtime');
-                tbl.integer('user_id')
-                    .unsigned()
-                    .notNullable()
-                    .references('users.id');
-
             })
-            .createTable('workouts', tbl => {
+            .createTable('badges', tbl =>{
                 tbl.increments();
-                tbl.text('workout_name');
-                tbl.text('workout_description');
-                tbl.text('muscles');
-                tbl.text('equipment');
-
+                tbl.text('badge_desc')
+                .notNullable()
+                .unique()
+                tbl.integer('xp_value')
+                .unsigned()
+                .notNullable();
             })
-            .createTable('workout_log', tbl => {
+            .createTable('entity', tbl =>{
                 tbl.increments();
-                tbl.date('date_set');
-                tbl.time('time_set');
-                tbl.text('muscles');
-                tbl.boolean('equipment');
                 tbl.integer('user_id')
-                    .unsigned()
-                    .notNullable()
-                    .references('users.id');
-                tbl.integer('workouts_id')
-                    .unsigned()
-                    .notNullable()
-                    .references('workouts.id');
-            })            
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+            })
+            .createTable('ratings', tbl =>{
+                tbl.integer('entity_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('rating', 5)
+            })
+            .createTable('liked', tbl =>{
+                tbl.integer('entity_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('rating', 5)
+            })
+            .createTable('comments', tbl =>{
+                tbl.integer('entity_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.integer('user_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable()
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+                tbl.text('comment_data')
+                .notNullable();
+            })
     )
 };
 
 exports.down = function(knex) {
     return(
         knex.schema
-            .dropTableIfExists('workout_log')
-            .dropTableIfExists('workouts')
-            .dropTableIfExists('daily_workout_totals')
-            .dropTableIfExists('users')
+            .dropTableifExists('users')
+            .dropTableifExists('workouts')
+            .dropTableifExists('diets')
+            .dropTableifExists('total_workouts')
+            .dropTableifExists('following')
+            .dropTableifExists('achieved')
+            .dropTableifExists('badges')
+            .dropTableifExists('entity')
+            .dropTableifExists('ratings')
+            .dropTableifExists('liked')
+            .dropTableifExists('comments')
     )
 };
