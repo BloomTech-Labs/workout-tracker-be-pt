@@ -1,4 +1,4 @@
-const db = require('../../connection');
+const db = require('../../database/connection');
 
 
 function getUsers(){
@@ -8,7 +8,6 @@ function getUsers(){
 function getUserById(id){
     return db('users')
         .where({id})
-        
 }
 
 function updateUser(id, changes){
@@ -29,10 +28,10 @@ function findBy(filter){
 }
 
 
-    module.exports = {
-        getUsers,
-        getUserById,
-        updateUser,
-        deleteUser,
-        findBy
-    }
+module.exports = {
+    getUsers,
+    getUserById,
+    updateUser,
+    deleteUser,
+    findBy
+}

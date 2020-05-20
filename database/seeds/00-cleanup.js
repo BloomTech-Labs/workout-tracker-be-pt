@@ -1,5 +1,3 @@
-
-//cleans up dbs
 const cleaner = require('knex-cleaner');
 
 exports.seed = function(knex) {

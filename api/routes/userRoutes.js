@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const database = require('../../connection');
+const database = require('../../database/connection');
 
 //validate registration form fields
 const checkRegistrationFields = require('../../validation/register');

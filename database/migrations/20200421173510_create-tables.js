@@ -9,6 +9,8 @@ exports.up = function(knex) {
                 tbl.string('email')
                 .notNullable()
                 .unique();
+                tbl.string('password')
+                .notNullable();
                 tbl.string('bio');
                 tbl.integer('zip', 5)
                 .unsigned();
@@ -61,7 +63,7 @@ exports.up = function(knex) {
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable('workout')
+                .inTable('workouts')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
             })
@@ -81,6 +83,15 @@ exports.up = function(knex) {
                 .inTable('users')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE')
+            })
+            .createTable('badges', tbl =>{
+                tbl.increments();
+                tbl.text('badge_desc')
+                .notNullable()
+                .unique()
+                tbl.integer('xp_value')
+                .unsigned()
+                .notNullable();
             })
             .createTable('achieved', tbl =>{
                 tbl.increments();
@@ -103,22 +114,13 @@ exports.up = function(knex) {
                 .defaultTo(false);
             
             })
-            .createTable('badges', tbl =>{
-                tbl.increments();
-                tbl.text('badge_desc')
-                .notNullable()
-                .unique()
-                tbl.integer('xp_value')
-                .unsigned()
-                .notNullable();
-            })
             .createTable('entity', tbl =>{
                 tbl.increments();
                 tbl.integer('user_id')
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('users')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
             })
@@ -127,14 +129,14 @@ exports.up = function(knex) {
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('entity')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
                 tbl.integer('user_id')
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('users')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
                 tbl.integer('rating', 5)
@@ -144,14 +146,14 @@ exports.up = function(knex) {
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('entity')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
                 tbl.integer('user_id')
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('users')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
                 tbl.integer('rating', 5)
@@ -161,14 +163,14 @@ exports.up = function(knex) {
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('entity')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
                 tbl.integer('user_id')
                 .unsigned()
                 .notNullable()
                 .references('id')
-                .inTable()
+                .inTable('users')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
                 tbl.text('comment_data')
