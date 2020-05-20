@@ -9,10 +9,8 @@ const database = require('../../database/connection');
 const checkRegistrationFields = require('../../validation/register');
 
 //authenticate and validate login fields
-const jwt = require('jsonwebtoken');
-const secrets = require('../../utilities/secrets');
 const validateLoginInput = require("../../validation/login");
-
+const {generateToken, verifyToken} = require('../../utilities/jwt');
 //import model
 const Users = require('../models/userModel');
 
@@ -156,17 +154,5 @@ router.post('/login', (req, res) => {
         })
     }
 });
-
-function generateToken(user){
-    const payload = {
-        subject: user.id,
-        email: user.email
-    };
-
-    const options = {
-        expiresIn: '1d'
-    };
-    return jwt.sign(payload, secrets.jwtSecret, options);
-}
 
 module.exports = router;
