@@ -1,27 +1,23 @@
-//code used from: https://www.simplecode.io/blog/create-a-rest-api-part-3-user-registration-and-validation/
-
-//validates form fields
-const validator = require('validator');
+const reg = require('./regex');
 const ifEmpty = require('./checkForEmpty');
 
-module.exports = function checkRegistrationFields(data){
+module.exports = function checkRegistrationFields(user){
     //catches errors
     let error = {};
 
-    data.email = !ifEmpty(data.email) ? data.email : "";
-    data.password = !ifEmpty(data.password) ? data.password : "";
-    data.username = !ifEmpty(data.username) ? data.username : "";
+    let data = {...user}
 
-    if (ifEmpty(data.email)){
-        error.email = "Email is required";
-    }    
-    if (ifEmpty(data.email)){
-        error.email = "Email address is invalid"; 
+    data.email = ifEmpty(data.email) ? data.email : "";
+    data.password = ifEmpty(data.password) ? data.password : "";
+    data.username = ifEmpty(data.username) ? data.username : "";
+
+    if (reg.test(data.email)){
+        error.email = "Invalid Email"
     }
-    if (ifEmpty(data.password)){
+    if (data.password = ""){
         error.password = "Password is required";
     }
-    if(ifEmpty(data.username)){
+    if (data.username = ""){
         error.username = "Username is required";
     }
 

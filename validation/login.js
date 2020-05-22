@@ -1,24 +1,19 @@
-//code from https://www.simplecode.io/blog/create-a-rest-api-part-6-user-login-jwt-authentication/
-
-const Validator = require('validator');
+const reg = require('./regex');
 const ifEmpty = require('./checkForEmpty');
 
-module.exports = function validateLoginInput(data){
+module.exports = function validateLoginInput(user){
     let errors = {};
 
-    data.email = !ifEmpty(data.email) ? data.email : "";
-    data.password = !ifEmpty(data.password) ? data.password : "";
+    let data = {...user}
 
-    if(!Validator.isEmail(data.email)){
+    data.email = ifEmpty(data.email) ? data.email : "";
+    data.password = ifEmpty(data.password) ? data.password : "";
+
+    if (reg.test(data.email)){
         errors.email = "Invalid Email";
     }
-
-    if(ifEmpty(data.email)){
-        errors.email = data;
-    }
-
-    if(ifEmpty(data.password)){
-        errors.password = errors
+    if (data.password = ""){
+        errors.password = "No password provided"
     }
 
     return{

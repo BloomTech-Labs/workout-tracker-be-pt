@@ -17,14 +17,19 @@ server.use(bodyParser.json());
 
 //import Routes
 const mainRoutes = require('./api/routes/mainRoute');
+const registrationRoute = require('./api/routes/registrationRoute');
 const userRoutes = require('./api/routes/userRoutes');
+const restricted = require('./validation/middleware/restricted-middlware');
 
 //set routes here
 //main route
 server.use('/', mainRoutes);
 
+//registration
+server.use('/api', registrationRoute)
+
 //user routes
-server.use('/users', userRoutes);
+server.use('/api/users', restricted, userRoutes);
 
 //set the port here
 const port = process.env.PORT || 3000;

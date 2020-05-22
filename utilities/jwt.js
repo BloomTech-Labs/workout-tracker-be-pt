@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const {jwtSecret, jwtPublic} = require('./secrets');
 
 function generateToken(user){
+    console.log(jwtSecret);
     const payload = {
         subject: user.id,
         email: user.email
@@ -9,7 +10,7 @@ function generateToken(user){
 
     const options = {
         issuer: 'Workout Tracker',
-        subject: user.id,
+        subject: user.username,
         audience: 'WorkoutTracker.com',
         expiresIn: '24h',
         algorithm: 'RS256'
