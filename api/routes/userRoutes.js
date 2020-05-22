@@ -69,9 +69,10 @@ router.get('/org', (req, res) => {
 });
 
 //GET USER BY ID
-router.get('/:userId', (req, res) => {
-    const userID = req.params.id
-    Users.getUserById(userId)
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    console.log(req.params.id)
+    Users.getUserById(id)
         .then(users => {
             const user = users[0];
             if(user){
@@ -83,6 +84,7 @@ router.get('/:userId', (req, res) => {
             }
         })
         .catch(err => {
+            console.log(err);
             res.status(500).json({
                 message: 'Failed to get user'
             });

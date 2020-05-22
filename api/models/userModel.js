@@ -7,7 +7,7 @@ function getUsers(){
 
 function getUserById(id){
     return db('users')
-        .where({id})
+        .where({id: id})
 }
 
 function updateUser(id, changes){
