@@ -182,16 +182,16 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return(
         knex.schema
-            .dropTableifExists('users')
-            .dropTableifExists('workouts')
-            .dropTableifExists('diets')
-            .dropTableifExists('total_workouts')
-            .dropTableifExists('following')
-            .dropTableifExists('achieved')
-            .dropTableifExists('badges')
-            .dropTableifExists('entity')
-            .dropTableifExists('ratings')
-            .dropTableifExists('liked')
             .dropTableifExists('comments')
+            .dropTableifExists('liked')
+            .dropTableifExists('ratings')
+            .dropTableifExists('entity')
+            .dropTableifExists('badges')
+            .dropTableifExists('achieved')
+            .dropTableifExists('following')
+            .dropTableifExists('total_workouts')
+            .dropTableifExists('diets')
+            .dropTableifExists('workouts')
+            .dropTableifExists('users')
     )
 };
