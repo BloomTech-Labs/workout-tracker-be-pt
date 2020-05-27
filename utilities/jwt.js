@@ -19,7 +19,8 @@ function generateToken(user){
     return jwt.sign(payload, jwtSecret, options);
 }
 
-function verifyToken(user){
+function verifyToken(user, token){
+
     const verifyOptions = {
         issuer: 'Workout Tracker',
         subject: user.id,

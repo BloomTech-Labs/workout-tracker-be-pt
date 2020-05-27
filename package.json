@@ -1,13 +1,15 @@
 {
   "name": "workout-tracker-be-pt7",
   "version": "1.0.0",
-  "description": "🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "node server.js",
-    "test": "jest",
-    "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
+    "start": "nodemon index.js",
+    "server": "node index.js",
+    "test": "cross-env DB_ENV=.env jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
     "codeclimate-test-reporter": "^0.5.1",
     "connect-session-knex": "^1.6.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-sessions": "^1.0.6",
@@ -35,9 +38,9 @@
     "knex": "^0.20.15",
     "knex-cleaner": "^1.3.0",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.2",
     "pg": "^7.18.2",
-    "validator": "^13.0.0"
+    "validator": "^13.0.0",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

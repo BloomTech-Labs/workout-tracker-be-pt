@@ -7,7 +7,7 @@ const Users = require('../models/userModel');
 const validateRegistration = require('../../validation/middleware/registration-middleware');
 const validateLogin = require('../../validation/middleware/login-middleware');
 
-const {generateToken, verifyToken} = require('../../utilities/jwt');
+const {generateToken } = require('../../utilities/jwt');
 
 router.post('/register', validateRegistration, (req, res) => {
     const user = req.body;
