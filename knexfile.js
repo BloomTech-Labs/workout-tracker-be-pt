@@ -1,7 +1,6 @@
 // Update with your config settings.
 require('dotenv').config()
 const types = require('pg').types;
-//const dbConnection = process.env.DATABASE_URL || "localhost";
 types.setTypeParser(1082, val => val);
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
     connection: {
       host: 'localhost',
       user: 'postgres',
-      password: `${process.env.DB_PASSWORD}`,
+      password: `${process.env.DB_LOCALPASSWORD}`,
       database: 'postgres'
     },
     migrations: {
