@@ -55,6 +55,18 @@ All endpoints start with `/api`
 | PUT    | `/diets/:id` | users          | Edits a food entry with the specified id number     |
 | DELETE | `/diets/:id` | users          | Deletes a a food entry with the specified id number |
 
+#### Routine/Connector Routes
+
+| Method | Endpoint        | Access Control | Description                                         |
+| ------ | --------------- | -------------- | --------------------------------------------------- |
+| GET    | `/routines`     | users          | Gets all routines for logged in user                |
+| GET    | `/routines/:id` | users          | Gets routine of id for logged in user               |
+| POST   | `/routines`     | users          | Adds routine to currently logged in user            |
+| POST   | `/routines/:id` | users          | Adds workout to given routine of given id           |
+| PUT    | `/routines/:id` | users          | Edits a routine with given id                       |
+| DELETE | `/routines/:id` | users          | Deletes a routine with given id                     |
+| DELETE | `/routines/:id` | users          | Deletes a refrence to a workout id with routine id  |
+
 # Data Model
 
 #### USERS
@@ -105,6 +117,30 @@ All endpoints start with `/api`
     meal_category:
     food_name:
     food_stats:
+  }
+
+```
+
+#### Routine
+
+---
+
+```
+  {
+    routine_tite: 
+    user_id: 
+  }
+
+```
+
+#### Connector
+
+---
+
+```
+  {
+    routines_id:
+    workout_id:
   }
 
 ```

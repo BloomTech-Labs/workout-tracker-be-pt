@@ -19,16 +19,42 @@ exports.up = function (knex) {
       tbl.string('workout_category').notNullable();
       tbl.string('workout_title').notNullable();
       tbl.date('workout_date').notNullable();
-      tbl.time('workout_start_time').notNullable();
-      tbl.time('workout_end_time').notNullable();
+      tbl.string('workout_length').notNullable();
       tbl.string('workout_description');
       tbl.boolean('completed').defaultTo(false);
-      tbl
-        .integer('user_id')
+      tbl.integer('user_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+    })
+    .createTable('routines', (tbl) => {
+      tbl.increments();
+      tbl.string('routine_title').notNullable();
+      tbl.integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+    })
+    .createTable('connector', (tbl) => {
+      tbl.integer('routines_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('routines')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+      tbl.integer('workout_id')
+        .unsigned()
+        .notNullable()
+        .unique()
+        .references('id')
+        .inTable('workouts')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
     })
@@ -170,6 +196,8 @@ exports.down = function (knex) {
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
     .dropTableIfExists('diets')
+    .dropTableIfExists('connector')
+    .dropTableIfExists('routines')
     .dropTableIfExists('workouts')
     .dropTableIfExists('users');
 };

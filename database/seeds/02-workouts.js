@@ -3,8 +3,23 @@ exports.seed = function (knex, Promise) {
       workout_category: "Abs",
       workout_title: "Nathans ab workout",
       workout_date: "2020-05-22",
-      workout_start_time: "04:05 AM",
-      workout_end_time: "04:35 AM",
+      workout_length: "30m",
+      completed: false,
+      user_id: 2
+    },
+    {
+      workout_category: "Legs",
+      workout_title: "Nathans Leg workout",
+      workout_date: "2020-05-22",
+      workout_length: "30m",
+      completed: false,
+      user_id: 2
+    },
+    {
+      workout_category: "leg",
+      workout_title: "Nathans leg 2 workout",
+      workout_date: "2020-08-22",
+      workout_length: "30m",
       completed: false,
       user_id: 1
     },
@@ -12,8 +27,7 @@ exports.seed = function (knex, Promise) {
       workout_category: "Biceps",
       workout_title: "Cory's bicep workout",
       workout_date: "2020-05-22",
-      workout_start_time: "06:05 AM",
-      workout_end_time: "06:35 AM",
+      workout_length: "30m",
       completed: false,
       user_id: 3
     },
@@ -21,10 +35,9 @@ exports.seed = function (knex, Promise) {
       workout_category: "N/A",
       workout_title: "New workout2",
       workout_date: "2020-05-22",
-      workout_start_time: "06:05 AM",
-      workout_end_time: "06:35 PM",
+      workout_length: "30m",
       completed: false,
-      user_id: 2
+      user_id: 1
     }
   ]);
 };

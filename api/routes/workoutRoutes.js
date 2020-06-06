@@ -3,14 +3,30 @@ const router = express.Router();
 const workoutMiddleware = require('../../validation/middleware/workout-middleware');
 
 //import model
-const Users = require('../models/userModel');
+const workouts = require('../models/workoutModel');
 
 router.get('/', (req, res) =>{
     const id = req.userId;
     
-    Users.getWorkoutsByUser(id)
+    workouts.getWorkoutsByUser(id)
         .then(blah =>{
             res.status(200).json({message: blah})
+        })
+        .catch(err =>{
+            res.status(500).json({message: err})
+        })
+})
+
+router.get('/:id', (req,res) =>{
+    const user_id = req.userId;
+    const id = req.params.id
+    workouts.getWorkoutById(id, user_id)
+        .then(work =>{
+            if(work){
+                res.status(200).json({message: work})
+            } else {
+                res.status(401).json({message: "Workout with given id and userId does not exist"})
+            }
         })
         .catch(err =>{
             res.status(500).json({message: err})
@@ -21,7 +37,7 @@ router.post('/', workoutMiddleware, (req, res) =>{
     const workout = req.body;
     workout.user_id = req.userId;
 
-    Users.addWorkout(workout)
+    workouts.addWorkout(workout)
         .then(work =>{
             res.status(200).json({message: work})  
         })
@@ -36,7 +52,7 @@ router.put('/:id', (req, res) =>{
     const id = req.params.id
     workout.user_id = req.userId;
 
-    Users.editWorkout(workout, id)
+    workouts.editWorkout(workout, id)
         .then(work =>{
             res.status(200).json({message: work})
         })
@@ -49,7 +65,7 @@ router.delete('/:id', (req, res) =>{
     const id = req.params.id
     const user_id = req.userId;
 
-    Users.deleteWorkout(user_id, id)
+    workouts.deleteWorkout(user_id, id)
         .then(work =>{
             res.status(200).json({message: work})
         })
