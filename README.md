@@ -38,13 +38,13 @@ All endpoints start with `/api`
 
 #### Workout Routes
 
-| Method | Endpoint        | Access Control | Description                                         |
-| ------ | --------------- | -------------- | --------------------------------------------------- |
-| GET    | `/workouts`     | users          | Gets all public workouts for any logged in user     |
-| GET    | `/workouts`     | users          | Gets all workouts for the logged in user            |
-| POST   | `/workouts`     | users          | Adds workout to currently logged in user            |
-| PUT    | `/workouts/:id` | users          | Edits a workout that said user owns with given id   |
-| DELETE | `/workouts/:id` | users          | Deletes a workout that said user owns with given id |
+| Method | Endpoint          | Access Control | Description                                         |
+| ------ | ---------------   | -------------- | --------------------------------------------------- |
+| GET    | `/workouts/public`| users          | Gets all public workouts for any logged in user     |
+| GET    | `/workouts`       | users          | Gets all workouts for the logged in user            |
+| POST   | `/workouts`       | users          | Adds workout to currently logged in user            |
+| PUT    | `/workouts/:id`   | users          | Edits a workout that said user owns with given id   |
+| DELETE | `/workouts/:id`   | users          | Deletes a workout that said user owns with given id |
 
 #### Diet/Food Entry Routes
 
