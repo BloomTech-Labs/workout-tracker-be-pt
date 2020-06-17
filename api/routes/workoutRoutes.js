@@ -6,7 +6,7 @@ const workoutMiddleware = require('../../validation/middleware/workout-middlewar
 const workouts = require('../models/workoutModel');
 
 // Gets all public workouts for a logged in user, toggle true/false
-router.get('/', (req, res) => {
+router.get('/public', (req, res) => {
     workouts.getPublicWorkouts()
         .then(workout => {
             res.status(200).json({ message: workout })
