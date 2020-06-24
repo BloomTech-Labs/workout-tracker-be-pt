@@ -21,7 +21,7 @@ exports.up = function (knex) {
       tbl.date('workout_date').notNullable();
       tbl.string('workout_length').notNullable();
       tbl.string('workout_description');
-      tbl.boolean('workout_share').defaultTo(false);
+      tbl.boolean('workout_share').defaultTo(true);
       tbl.boolean('completed').defaultTo(false);
       tbl.integer('user_id')
         .unsigned()
