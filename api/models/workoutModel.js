@@ -2,7 +2,7 @@ const db = require('../../database/connection');
 
 function getPublicWorkouts() {
     return db('workouts')
-        .where('workouts.workout_share', '=', true)
+        .where('workouts.workout_share', true)
 }
 
 function getWorkoutsByUser(id) {

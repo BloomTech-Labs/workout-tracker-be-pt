@@ -8,6 +8,19 @@ describe('Diet', () => {
     return db.seed.run()
   })
 
+  describe('Login for a token', () => {
+    it('should receive a token when logged in', () => {
+      return request(auth)
+      
+        .post('/api/login')
+        .send({username: 'Evelyn', email: 'egg@gmail.com', password: 'password'})
+        .then(response => {
+          const token = req.body.token
+          expect(response.body.token).toBe(token)
+        })
+    })
+  })
+
   describe('Retrieve diet entries', () => {
     it('should return a 500 status if not logged in', () => {
       return request(auth)
