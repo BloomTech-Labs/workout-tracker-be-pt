@@ -79,6 +79,13 @@ All endpoints start with `/api`
 | GET    | `/follow/followers`           | any            | Gets the list of people said user follows           |
 | GET    | `/follow/followers/number/:id`| any            | Gets the count of people said user follows          |
 
+#### Routine/Connector Routes
+
+| Method | Endpoint        | Access Control | Description                                         |
+| ------ | --------------- | -------------- | --------------------------------------------------- |
+| POST   | `/likes/:id`    | users          | Posts a like for the given entity id                |
+| GET    | `/likes/:id`    | any            | Gets all users who liked given entity id            |
+| DELETE | `/likes/:id`    | users          | Removes a like for the given entity id              |
 # Data Model
 
 #### USERS
