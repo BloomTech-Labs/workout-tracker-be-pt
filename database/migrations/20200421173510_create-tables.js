@@ -14,6 +14,17 @@ exports.up = function (knex) {
       tbl.decimal('weight', 3, 2).defaultTo(0).unsigned();
       tbl.binary('image');
     })
+    .createTable('entity', (tbl) => {
+      tbl.increments();
+      tbl
+        .integer('user_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
+    })
     .createTable('workouts', (tbl) => {
       tbl.increments();
       tbl.string('workout_category').notNullable();
@@ -30,6 +41,13 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl.bigInteger('entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
     })
     .createTable('routines', (tbl) => {
       tbl.increments();
@@ -41,6 +59,15 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl.bigInteger('entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
+      tbl.boolean('shareable')
+        .defaultTo(true);
     })
     .createTable('connector', (tbl) => {
       tbl.integer('routines_id')
@@ -81,6 +108,13 @@ exports.up = function (knex) {
       tbl.decimal('food_carbs', null).notNullable();
       tbl.decimal('food_fiber', null).notNullable();
       tbl.text('meal_notes');
+      tbl.bigInteger('entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
     })
     .createTable('following', (tbl) => {
       tbl.increments();
@@ -127,18 +161,8 @@ exports.up = function (knex) {
         .onDelete('CASCADE');
       tbl.boolean('completed').notNullable().defaultTo(false);
     })
-    .createTable('entity', (tbl) => {
-      tbl.increments();
-      tbl
-        .integer('user_id')
-        .unsigned()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onUpdate('CASCADE')
-        .onDelete('CASCADE');
-    })
     .createTable('ratings', (tbl) => {
+      tbl.unique(['entity_id', 'user_id']);
       tbl
         .integer('entity_id')
         .unsigned()
@@ -158,6 +182,7 @@ exports.up = function (knex) {
       tbl.integer('rating', 5);
     })
     .createTable('liked', (tbl) => {
+      tbl.unique(['entity_id', 'user_id']);
       tbl
         .integer('entity_id')
         .unsigned()
@@ -174,9 +199,9 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
-      tbl.integer('rating', 5);
     })
     .createTable('comments', (tbl) => {
+      tbl.unique(['entity_id', 'user_id']);
       tbl
         .integer('entity_id')
         .unsigned()
@@ -202,7 +227,6 @@ exports.down = function (knex) {
     .dropTableIfExists('comments')
     .dropTableIfExists('liked')
     .dropTableIfExists('ratings')
-    .dropTableIfExists('entity')
     .dropTableIfExists('achieved')
     .dropTableIfExists('badges')
     .dropTableIfExists('following')
@@ -210,5 +234,6 @@ exports.down = function (knex) {
     .dropTableIfExists('connector')
     .dropTableIfExists('routines')
     .dropTableIfExists('workouts')
+    .dropTableIfExists('entity')
     .dropTableIfExists('users');
 };

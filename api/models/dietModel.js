@@ -8,8 +8,9 @@ module.exports = {
   remove,
 };
 
-function add(diet) {
-  return db('diets').insert(diet).returning('*');
+async function add(diet) {
+  const [entity] = await db('entity').insert({user_id: diet.user_id}, 'id')
+  return db('diets').insert({...diet, entity_id: entity}).returning('*');
 }
 
 function findById(id) {

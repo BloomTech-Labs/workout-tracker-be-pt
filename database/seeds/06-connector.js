@@ -4,4 +4,4 @@ exports.seed = function(knex, Promise) {
       {routines_id: 2, workout_id: 3},
       {routines_id: 1, workout_id: 1}
     ]);
- };
+};

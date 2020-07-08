@@ -26,7 +26,8 @@ function getWorkoutById(id, user_id){
 }
 
 async function addWorkout(workout) {
-    const [id] = await db('workouts').insert(workout, 'id')
+    const [entity] = await db('entity').insert({user_id: workout.user_id}, 'id')
+    const [id] = await db('workouts').insert({...workout, entity_id: entity}, 'id')
 
     return db('workouts').where('workouts.id', '=', id);
 }

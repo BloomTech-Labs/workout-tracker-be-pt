@@ -6,7 +6,8 @@ exports.seed = function (knex, Promise) {
       workout_length: "30m",
       workout_share: false,
       completed: false,
-      user_id: 2
+      user_id: 2,
+      entity_id: 1
     },
     {
       workout_category: "Legs",
@@ -15,7 +16,8 @@ exports.seed = function (knex, Promise) {
       workout_length: "30m",
       workout_share: false,
       completed: false,
-      user_id: 2
+      user_id: 2,
+      entity_id: 2
     },
     {
       workout_category: "leg",
@@ -24,7 +26,8 @@ exports.seed = function (knex, Promise) {
       workout_length: "30m",
       workout_share: true,
       completed: false,
-      user_id: 1
+      user_id: 1,
+      entity_id: 3
     },
     {
       workout_category: "Biceps",
@@ -33,7 +36,8 @@ exports.seed = function (knex, Promise) {
       workout_length: "30m",
       workout_share: false,
       completed: false,
-      user_id: 3
+      user_id: 3,
+      entity_id: 4
     },
     {
       workout_category: "N/A",
@@ -42,7 +46,8 @@ exports.seed = function (knex, Promise) {
       workout_length: "30m",
       workout_share: false,
       completed: false,
-      user_id: 1
+      user_id: 1,
+      entity_id: 5
     }
   ]);
 };

@@ -15,7 +15,8 @@ exports.seed = function (knex) {
           food_fat: 33,
           food_protein: 18,
           food_carbs: 0,
-          food_fiber: 0          
+          food_fiber: 0,
+          entity_id: 6       
         },
         {
           user_id: 1,
@@ -28,7 +29,8 @@ exports.seed = function (knex) {
           food_fat: 0,
           food_protein: 0.5,
           food_carbs: 6,
-          food_fiber: 1.5 
+          food_fiber: 1.5,
+          entity_id: 7
         },
         {
           user_id: 1,
@@ -42,7 +44,8 @@ exports.seed = function (knex) {
           food_fat: 0,
           food_protein: 3,
           food_carbs: 6,
-          food_fiber: 2
+          food_fiber: 2,
+          entity_id: 8
         },
         {
           user_id: 1,
@@ -56,7 +59,8 @@ exports.seed = function (knex) {
           food_fat: 8,
           food_protein: 9,
           food_carbs: 11,
-          food_fiber: 0
+          food_fiber: 0,
+          entity_id: 9
         },
         {
           user_id: 1,
@@ -70,7 +74,8 @@ exports.seed = function (knex) {
           food_fat: 3,
           food_protein: 4,
           food_carbs: 41,
-          food_fiber: 4
+          food_fiber: 4,
+          entity_id: 10
         },
         {
           user_id: 1,
@@ -84,7 +89,8 @@ exports.seed = function (knex) {
           food_fat: 0,
           food_protein: 2,
           food_carbs: 5,
-          food_fiber: 2
+          food_fiber: 2,
+          entity_id: 11
         },
         {
           user_id: 1,
@@ -97,7 +103,8 @@ exports.seed = function (knex) {
           food_fat: 0,
           food_protein: 1,
           food_carbs: 6,
-          food_fiber: 2
+          food_fiber: 2,
+          entity_id: 12
         },
         {
           user_id: 1,
@@ -112,7 +119,8 @@ exports.seed = function (knex) {
           food_protein: 0,
           food_carbs: 2,
           food_fiber: 0,
-          meal_notes: "Trying out a new ranch salad dressing"
+          meal_notes: "Trying out a new ranch salad dressing",
+          entity_id: 13
         },
       ]);
     });

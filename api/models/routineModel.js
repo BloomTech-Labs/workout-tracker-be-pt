@@ -57,7 +57,8 @@ async function getRoutine(id, user_id){
 }
 
 async function addRoutine(routine){
-    const [id] = await db('routines').insert(routine, 'id')
+    const [entity] = await db('entity').insert({user_id: routine.user_id}, 'id');
+    const [id] = await db('routines').insert({...routine, entity_id: entity}, 'id')
 
     return db('routines').where('routines.id', '=', id);
 }
@@ -80,7 +81,7 @@ function deleteRoutine(id, user_id){
 
 async function deleteWorkoutInRoutine(id, user_id, workout_id){
     const isvalid = await db('routines').where('routines.user_id', '=', user_id).where('routines.id', '=', id)
-
+    
     if(isvalid[0]){
         return db('connector').where('connector.routines_id', '=', id).where('connector.workout_id', '=', workout_id).del()
     } else {
