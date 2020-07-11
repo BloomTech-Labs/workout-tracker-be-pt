@@ -92,13 +92,23 @@ All endpoints start with `/api`
 | GET    | `/follow/followers`           | any            | Gets the list of people said user follows           |
 | GET    | `/follow/followers/number/:id`| any            | Gets the count of people said user follows          |
 
-#### Routine/Connector Routes
+#### Likes
 
-| Method | Endpoint        | Access Control | Description                                         |
-| ------ | --------------- | -------------- | --------------------------------------------------- |
-| POST   | `/likes/:id`    | users          | Posts a like for the given entity id                |
-| GET    | `/likes/:id`    | any            | Gets all users who liked given entity id            |
-| DELETE | `/likes/:id`    | users          | Removes a like for the given entity id              |
+| Method | Endpoint          | Access Control | Description                                         |
+| ------ | ----------------- | -------------- | --------------------------------------------------- |
+| POST   | `/likes/:id`      | users          | Posts a like for the given entity id                |
+| GET    | `/likes/post/:id` | any            | Gets all users who liked given entity id            |
+| GET    | `/likes/user/:id` | any            | Gets all likes for specified user                   |
+| DELETE | `/likes/:id`      | users          | Removes a like for the given entity id              |
+
+#### Comments
+
+| Method | Endpoint             | Access Control | Description                                         |
+| ------ | -------------------- | -------------- | --------------------------------------------------- |
+| POST   | `/comments/:id`      | users          | Posts a comment for the given entity id             |
+| GET    | `/comments/get/:id`  | any            | Gets all comments under given entity_id             |
+| GET    | `/comments/user/:id` | any            | Gets all comments for  given user                   |
+| DELETE | `/comments/:id`      | users          | Removes a comment for the given entity id           |
 
 # Data Model
 
