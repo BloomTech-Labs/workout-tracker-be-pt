@@ -17,7 +17,20 @@ router.post('/:id', restricted, (req, res) => {
     })
 });
 
-router.get('/:id', (req, res) => {
+router.get('/user/:id', (req, res) =>{
+    const id = req.params.id;
+
+    likeDB.getLikedByUser(id)
+    .then(response =>{
+        res.status(201).json({message: response})
+    })
+    .catch(err =>{
+        console.log(err);
+        res.status(500).json({message: "There was a problem getting users liked posts"})
+    })
+});
+
+router.get('/post/:id', (req, res) => {
     const entity_id = req.params.id
 
     likeDB.getLikes(entity_id)
@@ -41,5 +54,7 @@ router.delete('/:id', restricted, (req, res) =>{
         res.status(500).json({message: "There was an error removing ur like from that entity"})
     })
 });
+
+
 
 module.exports = router;

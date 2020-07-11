@@ -235,9 +235,9 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl.timestamp('created_at').defaultTo(knex.fn.now());
     })
     .createTable('comments', (tbl) => {
-      tbl.unique(['entity_id', 'user_id']);
       tbl
         .integer('entity_id')
         .unsigned()
@@ -254,7 +254,16 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl
+        .integer('this_entity_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('entity')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE');
       tbl.text('comment_data').notNullable();
+      tbl.timestamp('created_at').defaultTo(knex.fn.now());
     });
 };
 

@@ -48,6 +48,36 @@ exports.seed = function (knex, Promise) {
       completed: false,
       user_id: 1,
       entity_id: 5
+    },
+    {
+      workout_category: "Abs",
+      workout_title: "Giovani's workout",
+      workout_date: "2020-07-16",
+      workout_length: "1H",
+      workout_share: true,
+      completed: false,
+      user_id: 4,
+      entity_id: 16
+    },
+    {
+      workout_category: "Biceps",
+      workout_title: "Leza's workout",
+      workout_date: "2020-07-16",
+      workout_length: "1H",
+      workout_share: true,
+      completed: false,
+      user_id: 5,
+      entity_id: 17
+    },
+    {
+      workout_category: "Biceps",
+      workout_title: "Jessicas's workout",
+      workout_date: "2020-07-16",
+      workout_length: "1H",
+      workout_share: true,
+      completed: false,
+      user_id: 6,
+      entity_id: 18
     }
   ]);
 };

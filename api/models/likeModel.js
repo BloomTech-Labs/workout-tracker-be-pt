@@ -19,9 +19,14 @@ function removeLikes(entity_id, user_id){
         .del()
 }
 
+function getLikedByUser(user_id){
+    return db('liked').where({user_id: user_id}).orderBy('liked.created_at', 'desc');
+}
+
 module.exports = {
     addLike,
     getLikes,
     getNumberOfLikes,
-    removeLikes
+    removeLikes,
+    getLikedByUser
 }
