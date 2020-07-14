@@ -114,8 +114,7 @@ exports.up = function (knex) {
         .references('id')
         .inTable('entity')
         .onUpdate('CASCADE')
-        .onDelete('CASCADE')
-      tbl.boolean('shareable').defaultTo(true);
+        .onDelete('CASCADE');
     })
     .createTable('mealplans', (tbl) => {
       tbl.increments();
