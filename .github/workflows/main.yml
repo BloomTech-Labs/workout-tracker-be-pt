@@ -39,8 +39,8 @@
             # An environment variable, the value is a GitHub repo secret
             CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
             DB_HOST: ${{ secrets.DB_HOST }}
-            DB_TESTNAME: `${{secrets.DB_TESTNAME}}`
-            DB_LOCALPASSWORD: `${{serverts.DB_LOCALPASSWORD}}`,
+            DB_TESTNAME: ${{secrets.DB_TESTNAME}}
+            DB_LOCALPASSWORD: ${{serverts.DB_LOCALPASSWORD}}
             CI: true
             NODE_ENV: test 
           with:
