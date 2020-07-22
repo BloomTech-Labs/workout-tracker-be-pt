@@ -110,6 +110,12 @@ All endpoints start with `/api`
 | GET    | `/comments/user/:id` | any            | Gets all comments for  given user                   |
 | DELETE | `/comments/:id`      | users          | Removes a comment for the given entity id           |
 
+#### Feeds
+
+| Method | Endpoint             | Access Control | Description                                         |
+| ------ | -------------------- | -------------- | --------------------------------------------------- |
+| GET    | `/feed`              | any            | Gets all sharable entities                          |
+
 # Data Model
 
 #### USERS
