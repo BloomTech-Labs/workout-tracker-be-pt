@@ -57,7 +57,7 @@ async function getRoutine(id, user_id){
 }
 
 async function addRoutine(routine){
-    const [entity] = await db('entity').insert({user_id: routine.user_id}, 'id');
+    const [entity] = await db('entity').insert({user_id: routine.user_id, type: 2}, 'id');
     const [id] = await db('routines').insert({...routine, entity_id: entity}, 'id')
 
     return db('routines').where('routines.id', '=', id);

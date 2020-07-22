@@ -75,7 +75,7 @@ async function getMealplan(id, user_id) {
 
 async function addMealplan(mealplan) {
     const [entity] = await db('entity')
-        .insert({ user_id: mealplan.user_id }, 'id')
+        .insert({ user_id: mealplan.user_id, type: 4 }, 'id')
     const [id] = await db('mealplans')
         .insert({ ...mealplan, entity_id: entity }, 'id')
 

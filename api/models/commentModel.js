@@ -1,7 +1,7 @@
 const db = require('../../database/connection');
 
 async function add(user_id, entity_id, comment){
-    const [entity] = await db('entity').insert({user_id: user_id}, 'id');
+    const [entity] = await db('entity').insert({user_id: user_id, type: 5}, 'id');
     return db('comments').insert({entity_id: entity_id, user_id: user_id, this_entity_id: entity, comment_data: comment}).returning('*');
 }
 

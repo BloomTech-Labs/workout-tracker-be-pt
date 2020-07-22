@@ -24,6 +24,9 @@ exports.up = function (knex) {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE');
+      tbl.integer('type')  //1 workout, 2 routine, 3 diet, 4 mealplan, 5 comment
+        .notNullable();
+      tbl.timestamp('created_at').defaultTo(knex.fn.now());
     })
     .createTable('workouts', (tbl) => {
       tbl.increments();

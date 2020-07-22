@@ -21,6 +21,7 @@ const routineRoutes = require('./api/routes/routineRoutes');
 const followRoutes = require('./api/routes/followRoute');
 const likeRoutes = require('./api/routes/likeRoute');
 const commentRoutes = require('./api/routes/commentsRoute');
+const entityRoutes = require('./api/routes/entityRoute');
 const restricted = require('./validation/middleware/restricted-middlware');
 
 //set routes here
@@ -39,5 +40,6 @@ server.use('/api/routines', restricted, routineRoutes);
 server.use('/api/follow', followRoutes);
 server.use('/api/likes', likeRoutes);
 server.use('/api/comments', commentRoutes);
+server.use('/api/feed', entityRoutes)
 
 module.exports = server;

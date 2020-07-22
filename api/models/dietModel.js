@@ -10,7 +10,7 @@ module.exports = {
 };
 
 async function add(diet) {
-  const [entity] = await db('entity').insert({user_id: diet.user_id}, 'id')
+  const [entity] = await db('entity').insert({user_id: diet.user_id, type: 3}, 'id')
   return db('diets').insert({...diet, entity_id: entity}).returning('*');
 }
 
