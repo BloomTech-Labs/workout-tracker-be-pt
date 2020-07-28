@@ -13,6 +13,10 @@ function getById(entity_id){
     return db('comments').where({this_entity_id: entity_id});
 }
 
+function getNumberOfComments(master_entity){
+    return db('comments').where({ entity_id: master_entity }).count();
+}
+
 async function getAllByEntityId(master_entity){
     const [data] = await db('entity').where({ id: master_entity}) //gets the entity of from the master entity id incase its not a comment
     const [comment_data] = await db('comments').where({this_entity_id: master_entity}) //if its a comment we need to get the comment data
@@ -50,4 +54,5 @@ module.exports = {
   getById,
   getAllByEntityId,
   getAllByUserId,
+  getNumberOfComments
 };

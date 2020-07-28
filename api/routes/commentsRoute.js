@@ -17,6 +17,19 @@ router.get('/get/:id', (req, res) => {
         })
 });
 
+router.get('/number/:id', (req, res) =>{
+    const { id } = req.params
+
+    Comments.getNumberOfComments(id)
+        .then(response =>{
+            res.status(200).json({message: response})
+        })
+        .catch(err =>{
+            console.log(err);
+            res.status(500).json({message: "problem getting number of comments"})
+        })
+})
+
 router.get('/users/:id', (req, res) =>{
     const id = req.params.id;
 
