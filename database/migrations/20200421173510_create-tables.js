@@ -73,6 +73,7 @@ exports.up = function (knex) {
         .defaultTo(true);
     })
     .createTable('connector', (tbl) => {
+      tbl.unique(['routines_id', 'workout_id'])
       tbl.integer('routines_id')
         .unsigned()
         .notNullable()
@@ -83,7 +84,6 @@ exports.up = function (knex) {
       tbl.integer('workout_id')
         .unsigned()
         .notNullable()
-        .unique()
         .references('id')
         .inTable('workouts')
         .onUpdate('CASCADE')

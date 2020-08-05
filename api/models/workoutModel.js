@@ -17,6 +17,7 @@ function getWorkoutsByUser(id) {
             'workouts.workout_length',
             'workouts.workout_description',
             'workouts.completed',
+            'workouts.entity_id'
         )
 }
 
