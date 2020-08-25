@@ -24,4 +24,4 @@ exclude_patterns:
   - '**/*.spec.js'
   - '**/*.test.js'
   - '**/database/'
-  - '**/models/'
+  - 'api/models/'
