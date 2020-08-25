@@ -20,7 +20,8 @@
       "!**/knexfile.js",
       "!**/index.js",
       "!**/users-router.js",
-      "!**/authenticate-middleware.js"
+      "!**/authenticate-middleware.js",
+      "!**/database/**"
     ]
   },
   "repository": {
