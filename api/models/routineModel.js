@@ -75,10 +75,8 @@ async function editRoutine(id, routine){
     return db('routines').where('routines.id', '=', id);
 }
 
-async function deleteRoutine(id, user_id){
-    const [routine] = db('routines').where('routines.id', '=', id).where('routines.user_id', '=', user_id);
-
-    return db('entity').where('id', '=', routine.entity_id).del();
+function deleteRoutine(id, user_id){
+    return db('routines').where('routines.id', '=', id).where('routines.user_id', '=', user_id).del();
 }
 
 async function deleteWorkoutInRoutine(id, user_id, workout_id){

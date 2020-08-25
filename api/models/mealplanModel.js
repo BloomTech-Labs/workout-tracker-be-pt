@@ -99,11 +99,9 @@ async function updateMealplan(id, mealplan) {
 
 async function removeMealplan(id, user_id) {
 
-    const [mealplan] = db('mealplans')
+    return db('mealplans')
         .where('mealplans.id', id)
-        .where('mealplans.user_id', user_id);
-
-    return db('mealpan').where('id', '=', mealplan.entity_id).del();
+        .where('mealplans.user_id', user_id).del();
 
 }
 

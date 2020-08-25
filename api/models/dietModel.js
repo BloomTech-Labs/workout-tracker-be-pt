@@ -49,8 +49,6 @@ function update(changes, id) {
   return db('diets').where({ id }).update(changes).returning('*');
 }
 
-async function remove(id) {
-  const [diet] = db('diets').where({id});
-
-  return db('entity').where('id', '=', diet.entity_id).del();
+function remove(id) {
+  return db('diets').where({id}).del();
 }
