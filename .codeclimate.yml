@@ -25,3 +25,4 @@ exclude_patterns:
   - '**/*.test.js'
   - '**/database/'
   - 'api/models/'
+  - "database/migrations/20200421173510_create-tables.js"
