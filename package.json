@@ -21,7 +21,7 @@
       "!**/index.js",
       "!**/users-router.js",
       "!**/authenticate-middleware.js",
-      "!**/database/**"
+      "!**/database/migrations**"
     ]
   },
   "repository": {
