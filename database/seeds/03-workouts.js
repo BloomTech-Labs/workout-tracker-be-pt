@@ -76,6 +76,7 @@ exports.seed = function (knex, Promise) {
       workout_title: "Leza's workout",
       workout_date: "2020-07-16",
       workout_length: "1H",
+      workout_time: '14:30:00',
       workout_description: "The workout designed for the busy Mom who still wants that fitness",
       workout_share: true,
       completed: false,
