@@ -14,7 +14,7 @@ function getWorkoutsByUser(id) {
             'workouts.workout_category',
             'workouts.workout_title',
             'workouts.workout_date',
-            'workouts.workouts_time',
+            'workouts.workout_time',
             'workouts.workout_length',
             'workouts.workout_description',
             'workouts.completed',
