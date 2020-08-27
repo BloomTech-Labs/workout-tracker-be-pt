@@ -33,6 +33,7 @@ exports.up = function (knex) {
       tbl.string('workout_category').notNullable();
       tbl.string('workout_title').notNullable();
       tbl.date('workout_date').notNullable();
+      tbl.time('workout_time').notNullable();
       tbl.string('workout_length').notNullable();
       tbl.string('workout_description');
       tbl.boolean('workout_share').defaultTo(true);
